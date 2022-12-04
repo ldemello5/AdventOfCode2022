@@ -1,11 +1,12 @@
+﻿
 using System;
 using System.Collections.Generic;
 
-class Day1
+class Day4
 {
     public static void Main(string[] args)
     {
-        string [] lines = File.ReadAllLines("Day1Input.txt");
+        string [] lines = File.ReadAllLines("Day4Input.txt");
         string [] inputs;
         int overlapping = 0;
         foreach(string line in lines){

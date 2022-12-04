@@ -1,7 +1,8 @@
+﻿
 using System;
 using System.Collections.Generic;
 
-class Day1
+class Day3
 {
     public static void Main(string[] args)
     {
