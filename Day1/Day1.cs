@@ -27,7 +27,6 @@ class Day1
         total+=temp;
         Console.WriteLine("Top 3 "+total);
     }
-    //finds largest number in list
     public static int FindLargest(List<int> number){
         int temp = 0;
         for(int i=0;i<number.Count;i++){
