@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-class Day2Part1
+class Day2Part2
 {
     public static void Main(string[] args)
     {
@@ -10,19 +10,23 @@ class Day2Part1
         int roundscore = 0;
         foreach(string line in lines){
             choices = line.Split(" ");
-            if(choices[1].Equals(WhatToPlay(choices[0]))){
-                //We won!
-                //Add points for win
-                roundscore+=6;
-            }else if(isDraw(choices[0],choices[1])==3){
-                //We drew!
+            if(choices[1].Equals("X")){
+                //Need to lose!
+                //Add points for what was played
+                roundscore+=points(howToLose(choices[0]));
+            }else if(choices[1].Equals("Y")){
+                //Need to draw!
+                //Add points for what was played
+                roundscore+=points(choices[0]);
                 //Add points for draw
                 roundscore+=3;
             }else{
-                //We lost! Don't have to do anything.
+                //Need to win!
+                //Add points for what was played
+                roundscore+=points(WhatToPlay(choices[0]));
+                //Add points for win
+                roundscore+=6;
             }
-            //Add points for specific thing played
-            roundscore+=points(choices[1]);
         }
         Console.WriteLine("Score: "+roundscore);
 
@@ -51,6 +55,15 @@ class Day2Part1
             return 3;
         }else{
             return 0;
+        }
+    }
+    public static string howToLose(string choice){
+        if(choice.Equals("A")){
+            return "Z";
+        }else if(choice.Equals("B")){
+            return "X";
+        }else{
+            return "Y";
         }
     }
     
