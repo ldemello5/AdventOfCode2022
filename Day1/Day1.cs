@@ -5,24 +5,35 @@ class Day1
 {
     public static void Main(string[] args)
     {
+        List<int> number = new List<int>();
         string [] lines = File.ReadAllLines("Day1Input.txt");
-        string [] inputs;
-        int overlapping = 0;
+        int temp = 0;
         foreach(string line in lines){
-            inputs = line.Split(",");
-            if(minMax(inputs[0])[0] >= minMax(inputs[1])[0] && minMax(inputs[0])[0] <= minMax(inputs[1])[1]
-            || minMax(inputs[1])[0] >= minMax(inputs[0])[0] && minMax(inputs[1])[0] <= minMax(inputs[0])[1]){
-                overlapping++;
+            if(!line.Equals("")){
+                temp += int.Parse(line);
+            }else{
+                number.Add(temp);
+                temp = 0;
             }
         }
-        Console.WriteLine("Overlapping: "+overlapping);
-        
+        int total = 0;
+        temp = FindLargest(number);
+        total+=temp;
+        number.Remove(temp);
+        temp = FindLargest(number);
+        total+=temp;
+        number.Remove(temp);
+        temp = FindLargest(number);
+        total+=temp;
+        Console.WriteLine("Top 3 "+total);
     }
-    public static int [] minMax(string input){
-        string [] numbers = input.Split("-");
-        int [] minandmax = new int[2];
-        minandmax[0] = int.Parse(numbers[0]);
-        minandmax[1] = int.Parse(numbers[1]);
-        return minandmax;
+    public static int FindLargest(List<int> number){
+        int temp = 0;
+        for(int i=0;i<number.Count;i++){
+            if(number[i]>temp){
+                temp = number[i];
+            }
+        }
+        return temp;
     }
 }
